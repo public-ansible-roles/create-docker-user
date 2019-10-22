@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  remote_user: infra-admin
+  become: true
+  roles:
+    - { role: docker }
+    - { role: ../.. }

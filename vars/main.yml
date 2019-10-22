@@ -1,0 +1,10 @@
+---
+usergroup:
+  user:
+    name: docker
+    detail: "docker user with Administrator role"
+    uid: "5003"
+    priv: admin
+    pubkey: "id_rsa.pub"
+  group:
+    name: docker

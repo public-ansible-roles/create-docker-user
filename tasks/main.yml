@@ -1,0 +1,22 @@
+---
+- name: add user that join to a group
+  user: 
+    name: "{{ usergroup.user.name }}"
+    uid: "{{ usergroup.user.uid }}"
+    group: "{{ usergroup.group.name  }}"
+    state: present
+
+- name: register pub key
+  authorized_key: 
+    user: "{{ usergroup.user.name }}"
+    key: "{{ lookup('file', usergroup.user.pubkey ) }}"
+    state: present
+
+- name: assign sudo to user
+  template:
+    src: "{{ usergroup.user.priv  }}_sudoers.j2"
+    dest: "/etc/sudoers.d/{{ usergroup.user.name }}"
+    owner: root
+    group: root
+    mode: 0400
+    backup: yes
